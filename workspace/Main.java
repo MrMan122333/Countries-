@@ -17,7 +17,7 @@ public class Main
   private ImageIcon img;
   private JLabel imageLabel;
   private JLabel outputLabel;
-  
+  private JTextArea userInput;
   public static void main(String[] args) {
     // Create the GUI
     Main gui = new Main();
@@ -28,16 +28,21 @@ public class Main
   /* loadCountries() reads in the data from the countries-data.csv file and fills in the countryArray with data. You need to add the loop that reads in the country data into the array. */
   public void loadCountries() 
   {
+    try{
     // Open the data file. Please note that the file structure we're working with requires the full file path as shown here unlike what you saw in runestone where the file name was sufficient.
     File file = new File("/workspaces/Countries/workspace/countries-data.csv");
-    
+      Scanner scan = new Scanner(file);
     //create a scanner and a loop to read from the file until you've read everything.
     // inside the loop you'll need to read in a line from the file and use "split" to break up the data into destinct parts.
     // create a new Country using your constructor with 4 arguments (each of the arguments is a different part of the line you've read in)
     // inside the loop, set countryArray[i] to the created Country object
     //after running this method your array should contain all 10 countries from inside the countries-data file.
      
-    
+    scan.close();  
+    }
+    catch(IOEception e){
+      System.out.println("ERROR");
+    }
   }
 
   /* showCountry() will show the image associated with the current country. It should get the country at index from the countryArray. It should use its get method to get its image file name and use the code below to put the image in the GUI.
@@ -48,7 +53,7 @@ public class Main
     // Use its get method to get the its image file name and save it into imagefile variable below instead of worldmap.jpg.
     String imagefile = "worldmap.jpg";
     // Use the following code to create an new Image Icon and put it into the GUI
-    img = new ImageIcon("/workspaces/Countries/workspace/"+imagefile);
+    img = new ImageIcon("/workspaces/Countries-/workspace/"+imagefile);
     imageLabel.setIcon(img);
   }
   
@@ -101,6 +106,8 @@ public Main() {
         jFrame.add(outputLabel);
         jFrame.setVisible(true);
         // add event listener for button click
+        userInput=new JTextArea(6,67);
+        jFrame.add(userInput);
         reviewButton.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent e) 
     {
