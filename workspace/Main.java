@@ -30,17 +30,30 @@ public class Main
   {
     try{
     // Open the data file. Please note that the file structure we're working with requires the full file path as shown here unlike what you saw in runestone where the file name was sufficient.
-    File file = new File("/workspaces/Countries/workspace/countries-data.csv");
+    File file = new File("/workspaces/Countries-/workspace/countries-data.csv");
       Scanner scan = new Scanner(file);
     //create a scanner and a loop to read from the file until you've read everything.
     // inside the loop you'll need to read in a line from the file and use "split" to break up the data into destinct parts.
     // create a new Country using your constructor with 4 arguments (each of the arguments is a different part of the line you've read in)
     // inside the loop, set countryArray[i] to the created Country object
     //after running this method your array should contain all 10 countries from inside the countries-data file.
-     
+     int i=0;
+     while(scan.hasNext()){
+      String line =scan.nextLine();
+      String[] info =line.split(",");
+      Country c = new Country (info[0],info [1],info[2],info[3]);
+      
+      
+         countryArray[i]=c;
+         i++;
+     }
     scan.close();  
+
+    for(Country c: countryArray){
+      System.out.println(c);
     }
-    catch(IOEception e){
+    }
+    catch(IOException e){
       System.out.println("ERROR");
     }
   }
@@ -49,9 +62,10 @@ public class Main
   */
   public void showCountry() {
     // Get the country at index from countryArray
-    
+     Country c = countryArray[index];
+    String imagefile = c.getImage();
+
     // Use its get method to get the its image file name and save it into imagefile variable below instead of worldmap.jpg.
-    String imagefile = "worldmap.jpg";
     // Use the following code to create an new Image Icon and put it into the GUI
     img = new ImageIcon("/workspaces/Countries-/workspace/"+imagefile);
     imageLabel.setIcon(img);
@@ -60,6 +74,16 @@ public class Main
   /* nextButton should increment index. If the index is greater than 9, reset it back to 0. Clear the outputLabel to empty string using setText, and call showCountry();*/
   public void nextButtonClick()
   {
+    if(index==9){
+      index=0;}
+      else{
+        index++;
+
+      }
+      outputLabel.setText("what country is this?"0;
+        showCountry();
+      )
+    }
     
   }
   
@@ -73,8 +97,10 @@ public class Main
   */
   public void quizButtonClick()
   {
-    Scanner scan = new Scanner(System.in); 
-    
+    String userAnswer = userInput.getText();
+    Scanner scan = new Scanner(System.in);
+
+    scan.close();
     
     
   }
